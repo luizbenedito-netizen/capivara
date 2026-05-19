@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:16
+    container_name: capivara_db
+    restart: unless-stopped
+    ports:
+      - "82:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    container_name: capivara_web
+    restart: unless-stopped
+    ports:
+      - "81:8000"
+    volumes:
+      - /{caminho_ate_projeto}:/app
+    environment:
+      DJANGO_SETTINGS_MODULE: config.production
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      CLOUDFLARE_TUNNEL_TOKEN: ${CLOUDFLARE_TOKEN}
+      CLOUDFLARE_HOSTNAME: ${HOSTNAME}
+      AUTO_RELOAD: "false"
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+
+volumes:
+  postgres_data:

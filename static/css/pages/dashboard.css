@@ -1,0 +1,32 @@
+/* CARD */
+ .dashboard-card {
+     background: var(--bg-main);
+     border-radius: 18px;
+     padding: 20px;
+     height: 100%;
+     border: 1px solid var(--border-color) !important;
+     transition: 0.25s ease;
+}
+/* HEADER */
+ .dashboard-card-header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-bottom: 20px;
+}
+ .dashboard-card-title {
+     color: var(--text-primary);
+     font-size: 16px;
+     font-weight: 600;
+     margin-bottom: 2px;
+}
+ .dashboard-card-subtitle {
+     color: #8b8b99;
+     font-size: 13px;
+}
+/* CHART */
+ .dashboard-chart-container {
+     position: relative;
+     height: 300px;
+     width: 100%;
+}

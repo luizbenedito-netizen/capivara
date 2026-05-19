@@ -1,0 +1,60 @@
+{% extends 'layouts/pages/login.html' %}
+{% load static %}
+
+{% block title %}
+Criar
+{% endblock %}
+
+{% block content %}
+
+{% include 'layouts/components/toast.html' %}
+
+<a href="#" class="logo-area noselect">
+    <i class="fa fa-logo"></i>
+    <b><span>Capivara</span></b>
+</a>
+<div class="welcome-title">Crie sua conta</div>
+<div class="welcome-subtitle">
+    Crie uma conta para começar a controlar sua grana!
+</div>
+<form class="form-login" method="POST">
+    {% csrf_token %}
+    <div class="mb-4">
+        <label>Usuário</label>
+        <input type="text" name="usuario" class="form-control" placeholder="Digite seu usuário" minlength="3"
+            maxlength="75" required>
+    </div>
+    <div class="mb-4">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" placeholder="Digite seu email" maxlength="254" required>
+    </div>
+    <div class="mb-3">
+        <label>Senha (minímo de 12 caracteres)</label>
+        <input type="text" name="senha" class="form-control" placeholder="Digite a senha" id="password" maxlength="24"
+            minlength="12" required>
+        <div class="password-strength">
+            <div class="strength-bar">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <small class="strength-text noselect">&nbsp;</small>
+        </div>
+        <div class="policy mt-2">
+            Ao criar sua conta, você concorda com nossos <a href="#">Termos de Uso</a> e <a href="#">Políticas
+                de Privacidade</a>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-custom w-100">
+        Continuar
+    </button>
+</form>
+<div class="divider">ou</div>
+<div class="create-account">
+    Já tem uma conta? <a href="/login">Fazer Login</a>
+</div>
+<!-- JS  -->
+<script src="{% static 'js/libs/zxcvbn.js' %}"></script>
+<script src="{% static 'js/pages/register.js' %}"></script>
+{% endblock %}

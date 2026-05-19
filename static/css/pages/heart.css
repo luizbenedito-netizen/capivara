@@ -1,0 +1,227 @@
+/* Content */
+[data-theme="light"] .dashboard-card {
+  border: 1px solid var(--border-color) !important;
+}
+
+[data-theme="light"] .account-icon {
+    background-color: var(--accent);
+    color: var(--text-white) !important;
+}
+
+.dashboard-card {
+    background: var(--bg-main);
+    border-radius: 14px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    padding-left: 18px;
+    padding-right: 18px;
+    height: 100%;
+}
+
+.section-title {
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.balance-value {
+    font-size: 24px;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.card-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border-color);
+    margin-top: 6px;
+    margin-bottom: 9px;
+}
+
+.account-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px;
+}
+
+.account-item:nth-child(odd) {
+    background: var(--stripped);
+}
+
+.account-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.account-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--text-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-darknes);
+    font-size: 18px;
+}
+
+.account-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-title {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+.account-subtitle {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.account-value, .account-value-expense {
+    color: var(--income);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.account-value-expense {
+  color: var(--expense);
+}
+
+.manage-btn {
+    width: 100%;
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.manage-btn:hover {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: var(--text-white);
+}
+
+.manage-btn:active {
+    background-color: var(--btn-bg-hover) !important;
+    border-color: var(--btn-bg-hover) !important;
+}
+
+.account-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.pending-btn {
+    border-color: var(--expense);
+    color: var(--expense);
+    padding: 4px 12px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.pending-btn:hover {
+    background: var(--expense);
+    border-color: var(--expense);
+    color: var(--text-white);
+}
+
+.pending-btn:active {
+    background-color: var(--expense-hover) !important;
+    border-color: var(--expense-hover) !important;
+}
+
+.btn-finalized {
+    padding: 4px 12px;
+    font-size: 13px;
+    white-space: nowrap;
+    color: var(--accent) !important;
+    border-color: var(--accent) !important;
+}
+
+.btn-finalized:hover,
+.btn-finalized:active
+ {
+  color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  background: inherit !important;
+}
+
+.success-btn,
+.gear-btn {
+    padding: 4px 12px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.gear-btn {
+    display: flex;
+    font-size: 23px;
+    padding: 4px 6px;
+    border-color: var(--btn-gear);
+    color: var(--btn-gear);
+}
+
+.gear-btn:active {
+    transform: scale(.9);
+}
+
+.success-btn {
+    padding: 4px 12px;
+    border-color: var(--income);
+    color: var(--income);
+}
+
+.success-btn:hover {
+    background: var(--income);
+    border-color: var(--income);
+    color: var(--text-white);
+}
+
+.success-btn:active {
+    background-color: var(--income-hover) !important;
+    border-color: var(--income-hover) !important;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dashboard-group {
+  display: contents;
+}
+
+.card-1 { order: 1; }
+.card-2 { order: 2; }
+.card-3 { order: 3; }
+
+@media (min-width: 1295px) {
+  .dashboard {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .dashboard-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 600px;
+    flex-shrink: 0;
+  }
+
+  .card-2 {
+    flex: 1;
+    order: unset;
+  }
+}

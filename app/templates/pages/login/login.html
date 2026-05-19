@@ -1,0 +1,50 @@
+{% extends 'layouts/pages/login.html' %}
+{% load static %}
+
+{% block title %}
+Entrar
+{% endblock %}
+
+{% block content %}
+
+{% include 'layouts/components/toast.html' %}
+
+<a href="#" class="logo-area noselect">
+    <i class="fa fa-logo"></i>
+    <b><span>Capivara</span></b>
+</a>
+<div class="welcome-title">Bem vindo novamente!</div>
+<div class="welcome-subtitle">
+    Acesse sua conta para começar a controlar sua grana
+</div>
+<form class="form-login" method="POST">
+    {% csrf_token %}
+    <div class="mb-4">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" placeholder="Digite seu email" maxlength="254" required>
+    </div>
+    <div class="mb-3">
+        <label>Senha</label>
+        <div class="input-group">
+            <input type="password" name="senha" class="form-control" placeholder="Digite a senha" id="password"
+                minlength="12" maxlength="24" required>
+            <span class="input-group-text" id="togglePassword">
+                <i class="fa fa-eye" id="icon"></i>
+            </span>
+        </div>
+        <div class="forgot-password">
+            <a href="/login/esquecisenha">Esqueci minha senha
+            </a>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-custom w-100">
+        Continuar
+    </button>
+</form>
+<div class="divider">ou</div>
+<div class="create-account">
+    <a href="/register">Criar Conta</a>
+</div>
+<!-- JS  -->
+<script src="{% static 'js/pages/login.js' %}"></script>
+{% endblock %}

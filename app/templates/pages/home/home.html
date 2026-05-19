@@ -1,0 +1,141 @@
+{% extends "layouts/pages/home.html" %}
+
+{% block js-1 %}
+{% load django_vite %}
+{% vite_asset 'layout/pages/heart/heart.js' %}
+{% endblock js-1 %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container-fluid dashboard p-0">
+    <div class="dashboard-group">
+        <div class="dashboard-card card-1">
+            <div class="card-top">
+                <small class="section-title noselect">Saldo Geral</small>
+
+                <div class="balance-value">
+                    R$ {{ financeiro.receita|default:0|floatformat:2 }}
+                </div>
+            </div>
+            <div class="card-divider"></div>
+            <div class="card-bottom">
+                {% if contas %}
+                <small class="section-title noselect">
+                    Minhas Contas
+                </small>
+                {% for conta in contas %}
+                <div class="account-item {% if forloop.first %}mt-2{% else %}mt-2{% endif %} {% if forloop.last %}mb-2{% endif %}"
+                    data-id="{{ conta.id }}">
+                    <div class="account-left">
+                        <div class="account-icon">
+                            <i class="{{ conta.icone|default:'fa-wallet' }}"></i>
+                        </div>
+                        <div class="account-info">
+                            <div class="account-title">
+                                {{ conta.nome_conta }}
+                            </div>
+                            <div class="account-subtitle">
+                                {{ conta.tipo_conta }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="account-value me-4">
+                            R$ {{ conta.saldo_conta|default:0|floatformat:2 }}
+                        </div>
+                        <button class="btn btn-outline-secondary gear-btn" onclick="abrirModalConta('{{ conta.id }}')">
+                            <i class="fa-gear"></i>
+                        </button>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="text-center mt-4">Nenhuma conta cadastrada.</div>
+                {% endfor %}
+                {% endif %}
+                <button class="btn btn-outline-primary manage-btn mt-2" onclick="abrirModalConta()">
+                    Gerenciar Contas
+                </button>
+            </div>
+        </div>
+        <div class="dashboard-card card-3">
+            <div class="card-top">
+                <small class="section-title noselect">Receitas</small>
+
+                <div class="balance-value">
+                    R$ {{ receitas_detalhado.total_somado|floatformat:2 }}
+                </div>
+            </div>
+            <div class="card-divider"></div>
+            <div class="card-bottom">
+                {% if receitas_detalhado.lista %}
+                {% for item in receitas_detalhado.lista %}
+                <div class="account-item mt-4" data-id="{{item.id}}">
+                    <div class="account-left">
+                        <div class="account-info">
+                            <div class="account-title"> {{ item.tipo_receita }} </div>
+                            <div class="account-subtitle"> Injetado: {{ item.data_adicionada }} </div>
+                        </div>
+                    </div>
+                    <div class="account-actions">
+                        <div class="account-value"> R$ {{ item.valor|floatformat:2 }} </div>
+                        <button class="btn btn-outline-primary success-btn">
+                            Remover
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="dashboard-card card-2">
+        <div class="card-top">
+            <small class="section-title noselect">Despesas</small>
+            <div class="balance-value">
+                R$ {{ despesas_detalhado.total_somado|floatformat:2 }}
+            </div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-bottom">
+            {% if despesas_detalhado.lista %}
+            {% for despesa in despesas_detalhado.lista %}
+            <div class="account-item {% if forloop.first %}mt-4{% else %}mt-1{% endif %}">
+                <div class="account-left">
+                    <div class="account-info">
+                        <div class="account-title">{{ despesa.nome }}</div>
+                        <div class="account-subtitle">Prazo: {{ despesa.vencimento }}</div>
+                    </div>
+                </div>
+                <div class="account-actions" data-id="{{despesa.id}}">
+                    {% if despesa.status == 1 %}
+                    <div class="account-value-expense" style="color: var(--accent) !important;">
+                        R$ {{ despesa.valor|floatformat:2 }}
+                    </div>
+                    <button class="btn btn-outline-secondary btn-finalized"
+                        style="width: 60px;border-color: var(--accent); color: var(--accent) !important;">
+                        Ok
+                    </button>
+                    <button class="btn btn-outline-danger pending-btn btn-finalized"
+                        style="border-color: var(--accent); color: var(--accent) !important;">
+                        Remover
+                    </button>
+                    {% else %}
+                    <div class="account-value-expense">
+                        R$ {{ despesa.valor|floatformat:2 }}
+                    </div>
+                    <button class="btn btn-outline-primary pending-btn">
+                        Pagar
+                    </button>
+                    <button class="btn btn-outline-danger pending-btn">
+                        Remover
+                    </button>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

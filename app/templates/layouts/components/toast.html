@@ -1,0 +1,67 @@
+<style>
+    .toast-container {
+        z-index: 9999;
+        font-size: 18px !important;
+    }
+
+    .toast.auto-toast {
+        display: block !important;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+        margin-bottom: 10px;
+        pointer-events: auto;
+    }
+
+    .toast.auto-toast.show-toast {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .toast.auto-toast.hide-toast {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toasts = document.querySelectorAll('.auto-toast');
+        toasts.forEach(toast => {
+            const closeButton = toast.querySelector('.btn-close');
+            setTimeout(() => {
+                toast.classList.add('show-toast');
+            }, 100);
+            function closeToast() {
+                toast.classList.remove('show-toast');
+                toast.classList.add('hide-toast');
+                setTimeout(() => {
+                    toast.remove();
+                }, 400);
+            }
+            const autoClose = setTimeout(closeToast, 4000);
+            closeButton.addEventListener('click', () => {
+                clearTimeout(autoClose);
+                closeToast();
+            });
+        });
+    });
+</script>
+
+<div class="toast-container position-absolute top-0 start-50 translate-middle-x p-3 mt-4">
+    {% for message in messages %}
+    <div class="toast auto-toast align-items-center border-0 text-white 
+              {% if 'error' in message.tags %} bg-danger 
+              {% elif 'success' in message.tags %} bg-success 
+              {% else %} bg-primary {% endif %}" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                {{ message }}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-3 m-auto shadow-none" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+        </div>
+    </div>
+    {% endfor %}
+</div>

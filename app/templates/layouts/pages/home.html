@@ -1,0 +1,140 @@
+{% extends "../index.html" %}
+{% load static %}
+
+{% block js-0 %}
+{% load django_vite %}
+{% vite_asset 'layout/templates/home.js' %}
+{% endblock js-0 %}
+
+{% block body %}
+<nav class="top-nav">
+  <div class="container-fluid nav-grid">
+    <div class="user-greeting noselect">
+      {{ greeting }},<br>
+      <strong>
+        {% with name=request.session.username %}
+        <strong>
+          {% if name|length > 15 %}
+          {{ name|slice:":15" }}...
+          {% else %}
+          {{ name }}
+          {% endif %}
+        </strong>
+        {% endwith %}
+      </strong>
+    </div>
+    <div class="receitas d-flex align-items-center gap-2">
+      <div class="circle receita noselect">
+        <i class="fa-arrow-top"></i>
+      </div>
+      <div>
+        <div class="label noselect">Receitas</div>
+        <div class="value">R$ {{ sumario_financeiro.receitas_total|default:0|floatformat:2 }}</div>
+      </div>
+    </div>
+    <div class="month-dropdown dropdown noselect" data-type="month">
+      <div class="month-selector dropdown-toggle" data-bs-toggle="dropdown" data-value="{{ month }}">
+        <span class="selected-text" data-dropdown-value> {{ month_name }} </span>
+      </div>
+      <ul class="dropdown-menu dropdown-menu-dark p-0" style="z-index: 2001 !important;">
+        <li class="year-selector">
+          <div class="year-btn year-prev"> <i class="fa-solid fa-caret-left"></i>
+          </div>
+          <div class="year-value"> {{ year }} </div>
+          <div class="year-btn year-next"> <i class="fa-solid fa-caret-right"></i>
+          </div>
+        </li>
+        <li class="dropdown-item dropdown-option {% if month == 1 %}active{% endif %}" data-value="1"> Janeiro </li>
+        <li class="dropdown-item dropdown-option {% if month == 2 %}active{% endif %}" data-value="2"> Fevereiro </li>
+        <li class="dropdown-item dropdown-option {% if month == 3 %}active{% endif %}" data-value="3"> Março </li>
+        <li class="dropdown-item dropdown-option {% if month == 4 %}active{% endif %}" data-value="4"> Abril </li>
+        <li class="dropdown-item dropdown-option {% if month == 5 %}active{% endif %}" data-value="5"> Maio </li>
+        <li class="dropdown-item dropdown-option {% if month == 6 %}active{% endif %}" data-value="6"> Junho </li>
+        <li class="dropdown-item dropdown-option {% if month == 7 %}active{% endif %}" data-value="7"> Julho </li>
+        <li class="dropdown-item dropdown-option {% if month == 8 %}active{% endif %}" data-value="8"> Agosto </li>
+        <li class="dropdown-item dropdown-option {% if month == 9 %}active{% endif %}" data-value="9"> Setembro </li>
+        <li class="dropdown-item dropdown-option {% if month == 10 %}active{% endif %}" data-value="10"> Outubro </li>
+        <li class="dropdown-item dropdown-option {% if month == 11 %}active{% endif %}" data-value="11"> Novembro
+        </li>
+        <li class="dropdown-item dropdown-option {% if month == 12 %}active{% endif %}" data-value="12"> Dezembro
+        </li>
+      </ul>
+    </div>
+    <div class="despesas d-flex align-items-center gap-2">
+      <div class="circle despesa noselect">
+        <i class="fa-arrow-down"></i>
+      </div>
+      <div>
+        <div class="label noselect">Despesas</div>
+        <div class="value">R$ {{ sumario_financeiro.despesas_total|default:0|floatformat:2 }}</div>
+      </div>
+    </div>
+    <button class="action-btn noselect" id="toggleTheme">
+      <i class="fa-moon"></i>
+    </button>
+  </div>
+</nav>
+<div class="layout-wrapper">
+  <div class="layout">
+    <div class="content-area" id="content">
+      <!-- Conteúdo -->
+      {% block content %} {% endblock %}
+    </div>
+    <!-- Scroll custom -->
+    <div class="custom-scroll" id="scrollbar">
+      <div class="scroll-thumb" id="thumb"></div>
+    </div>
+  </div>
+</div>
+{% include 'layouts/components/nav-footer.html' %}
+<!-- Menu -->
+<div class="fab-container noselect" id="fabContainer">
+  <input type="checkbox" id="toggle" hidden autocomplete="off">
+
+  <label for="toggle" class="fab fab-main" tabindex="0">
+    <i class="fa-bars"></i>
+  </label>
+
+  <div class="fab fab-item fab1" title="Criar" onclick="showModal({name:'modal-create'})">
+    <i class="fa-plus"></i>
+  </div>
+
+  <div class="fab fab-item fab2" title="Tags" onclick="/*showModal({name:'modal-tags'})*/">
+    <i class="fa-label"></i>
+  </div>
+</div>
+<!-- Modal  -->
+<div id="modal-create" hidden>
+  <div class="modal-title">
+    Criar
+  </div>
+  <div class="modal-body-custom">
+    {% include 'pages/home/modal/mcreate.html' %}
+  </div>
+  <div class="modal-footer-custom">
+  </div>
+</div>
+<!-- Modal  -->
+<div id="modal-tags" hidden>
+  <div class="modal-title">
+    Tags
+  </div>
+  <div class="modal-body-custom">
+    <h3>Conteúdo de Tags</h3>
+  </div>
+  <div class="modal-footer-custom">
+  </div>
+</div>
+<!-- Modal  -->
+<div id="modal-wallets" hidden>
+  <div class="modal-title">
+    Contas
+  </div>
+  <div class="modal-body-custom">
+    {% include 'pages/home/modal/mconta.html' %}
+    {% block js-1 %}{% endblock js-1 %}
+  </div>
+  <div class="modal-footer-custom">
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'layouts/pages/login.html' %}
+
+{% block title %}
+Recuperar Conta
+{% endblock %}
+
+{% block content %}
+<a href="#" class="logo-area noselect">
+    <i class="fa fa-logo"></i>
+    <b><span>Capivara</span></b>
+</a>
+<div class="welcome-title">Recuperar Conta</div>
+{% if messages %}
+<div class="mt-4 text-center">
+    {% for message in messages %}
+    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-2">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+<button onclick="voltar()" type="button"
+    class="text-white bg-cyan-900 hover:bg-cyan-950 focus:ring-4 focus:outline-none font-medium rounded-lg text-base w-full px-6 py-3 text-center light:bg-blue-600 light:hover:bg-blue-700 light:focus:ring-blue-800 cursor-pointer">
+    Voltar
+</button>
+<script>
+    const voltar = () => {
+        window.location.href = "{% url 'login' %}";
+    }
+</script>
+{% else %}
+<div class="welcome-subtitle">
+    Informe sua conta. Se existir, enviaremos um e-mail de recuperção.
+</div>
+<form class="form-login" method="POST" action="home.html">
+    {% csrf_token %}
+    <div class="mb-4">
+        <label>Email</label>
+        <input type="email" class="form-control" placeholder="Digite seu email" maxlength="254" required>
+    </div>
+    <button type="submit" class="btn btn-custom w-100">
+        Confirmar
+    </button>
+</form>
+<div class="divider">ou</div>
+<div class="create-account">
+    <a href="/login">Voltar</a>
+</div>
+{% endif %}
+{% endblock %}

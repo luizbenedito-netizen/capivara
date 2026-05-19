@@ -1,0 +1,52 @@
+{% extends "layouts/pages/home.html" %}
+
+{% load static %}
+
+{% block js-1 %}
+{% load django_vite %}
+{% vite_asset 'layout/pages/dashboard/dashboard.js' %}
+{% endblock js-1 %}
+
+{% block title %}DashBoard{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-0" style="width: 90%;">
+    <div class="row g-4">
+        <div class="col-12 col-lg-4">
+            <div class="dashboard-card">
+                <div class="dashboard-card-header">
+                    <div>
+                        <p class="dashboard-card-title">
+                            Despesas por Categoria
+                        </p>
+                        <span class="dashboard-card-subtitle">
+                            Período atual
+                        </span>
+
+                    </div>
+                </div>
+                <div class="dashboard-chart-container">
+                    <canvas id="expenseChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-5">
+            <div class="dashboard-card">
+                <div class="dashboard-card-header">
+                    <div>
+                        <p class="dashboard-card-title">
+                            Receitas x Despesas
+                        </p>
+                        <span class="dashboard-card-subtitle">
+                            Comparativo do período
+                        </span>
+                    </div>
+                </div>
+                <div class="dashboard-chart-container">
+                    <canvas id="incomeExpenseChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

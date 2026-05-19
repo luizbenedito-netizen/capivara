@@ -1,0 +1,66 @@
+{% extends "../../layouts/index.html" %}
+{% load static %}
+
+{% block js-0 %}
+{% load django_vite %}
+{% vite_asset 'layout/pages/user/settings.js' %}
+{% endblock js-0 %}
+
+{% block title %}Configurações{% endblock %}
+
+{% block body %}
+<nav class="elm-nav d-flex align-items-center justify-content-center noselect" onclick="window.location.href='/user'">
+    <div class="nav-inner position-relative d-flex align-items-center w-100">
+        <i class="fa-angle-left nav-icon"></i>
+        <div class="title-nav mx-auto text-center">
+            Configurações
+        </div>
+    </div>
+</nav>
+<div class="layout noselect">
+    <div class="content-area" id="content">
+        <div class="config-card">
+            <div class="config-title">Alertas e Notificações</div>
+            <div class="config-list">
+                <label class="switch">
+                    <div class="config-item">
+                        <i class="fa-bell"></i>
+                        <span>Alerta</span>
+                        <div class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="config-card">
+            <div class="config-title">Outras opções</div>
+            <div class="config-list">
+                <div class="config-item no-icon">
+                    <span>Políticas de Privacidade</span>
+                    <i class="fa-angle-right color-green"></i>
+                </div>
+                <div class="config-item no-icon">
+                    <span>Termos de Uso</span>
+                    <i class="fa-angle-right color-green"></i>
+                </div>
+            </div>
+        </div>
+        <div class="config-card">
+            <div class="config-title">Área de Exclusão</div>
+            <div class="config-list">
+                <div class="config-item no-icon">
+                    <span>Excluir Conta</span>
+                    <i class="fa-angle-right color-red"></i>
+                </div>
+            </div>
+        </div>
+        <button class="btn-logout" onclick="window.location.href='/login/logout'">Sair</button>
+    </div>
+    <!-- Scroll custom -->
+    <div class="custom-scroll" id="scrollbar">
+        <div class="scroll-thumb" id="thumb"></div>
+    </div>
+</div>
+{% endblock %}

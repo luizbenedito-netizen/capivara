@@ -1,0 +1,149 @@
+.fa-move {
+  --icon-url: url("/static/icons/move.svg");
+}
+
+.fa-calculator-simple {
+  --icon-url: url("/static/icons/calculator-simple.svg");
+}
+
+.fa-angle-right {
+  --icon-url: url("/static/icons/angle-right.svg");
+}
+
+.fa-bars {
+  --icon-url: url("/static/icons/bars.svg");
+}
+
+.fa-link {
+  --icon-url: url("/static/icons/link.svg");
+}
+
+.fa-house {
+  --icon-url: url("/static/icons/house.svg");
+}
+
+.fa-bell {
+  --icon-url: url("/static/icons/bell.svg");
+}
+
+.fa-arrow-up-to-line {
+  --icon-url: url("/static/icons/arrow-up-to-line.svg");
+}
+
+.fa-grid-plus {
+  --icon-url: url("/static/icons/grid-plus.svg");
+}
+
+.fa-user {
+  --icon-url: url("/static/icons/user.svg");
+}
+
+.fa-moon {
+  --icon-url: url("/static/icons/moon.svg");
+}
+
+.fa-trash {
+  --icon-url: url("/static/icons/trash.svg");
+}
+
+.fa-caret-left {
+  --icon-url: url("/static/icons/caret-left.svg");
+}
+
+.fa-plus {
+  --icon-url: url("/static/icons/plus.svg");
+}
+
+.fa-claps {
+  --icon-url: url("/static/icons/claps.svg");
+}
+
+.fa-angle-left {
+  --icon-url: url("/static/icons/angle-left.svg");
+}
+
+.fa-circle-question {
+  --icon-url: url("/static/icons/circle-question.svg");
+}
+
+.fa-eye-low {
+  --icon-url: url("/static/icons/eye-low.svg");
+}
+
+.fa-plane {
+  --icon-url: url("/static/icons/plane.svg");
+}
+
+.fa-baket-shopping {
+  --icon-url: url("/static/icons/baket-shopping.svg");
+}
+
+.fa-report {
+  --icon-url: url("/static/icons/report.svg");
+}
+
+.fa-arrow-top {
+  --icon-url: url("/static/icons/arrow-top.svg");
+}
+
+.fa-wallet {
+  --icon-url: url("/static/icons/wallet.svg");
+}
+
+.fa-envelope {
+  --icon-url: url("/static/icons/envelope.svg");
+}
+
+.fa-logo {
+  --icon-url: url("/static/icons/logo.svg");
+}
+
+.fa-gear {
+  --icon-url: url("/static/icons/gear.svg");
+}
+
+.fa-gamepad-modern {
+  --icon-url: url("/static/icons/gamepad-modern.svg");
+}
+
+.fa-eye {
+  --icon-url: url("/static/icons/eye.svg");
+}
+
+.fa-minus {
+  --icon-url: url("/static/icons/minus.svg");
+}
+
+.fa-categories {
+  --icon-url: url("/static/icons/categories.svg");
+}
+
+.fa-arrow-down {
+  --icon-url: url("/static/icons/arrow-down.svg");
+}
+
+.fa-health {
+  --icon-url: url("/static/icons/health.svg");
+}
+
+.fa-home {
+  --icon-url: url("/static/icons/home.svg");
+}
+
+.fa-label {
+  --icon-url: url("/static/icons/label.svg");
+}
+
+.fa-caret-right {
+  --icon-url: url("/static/icons/caret-right.svg");
+}
+
+.fa-chart-pie {
+  --icon-url: url("/static/icons/chart-pie.svg");
+}
+
+.fa-filter {
+  --icon-url: url("/static/icons/filter.svg");
+}
+
+/*# sourceMappingURL=icons.css.map */

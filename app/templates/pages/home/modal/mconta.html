@@ -1,0 +1,126 @@
+<div class="container-fluid p-0 modal-custom-account">
+    <div class="row m-0">
+        <div class="col-12 p-0">
+            <!-- Trocado bg-dark por account-card -->
+            <div class="card account-card border-0 rounded-0">
+                <div class="card-body p-3">
+
+                    <!-- Título -->
+                    <div class="mb-3 d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="fw-bold mb-0" id="modal-account-title">Criar Conta</p>
+                        </div>
+                        <button type="button" class="btn btn-del-warning py-2 mt-2 d-none" id="account_delete_btn"
+                            title="Excluir Registro">
+                            <i class="fa-trash d-flex"></i>
+                        </button>
+                    </div>
+
+                    <hr class="opacity-25 mt-2">
+
+                    <!-- Linha do Formulário -->
+                    <div class="row g-3 mb-3">
+
+                        <!-- Tipo Conta -->
+                        <div class="col">
+                            <label class="form-label fw-semibold mb-1">
+                                <small>Tipo de Conta</small>
+                            </label>
+                            <div class="dropdown w-100 noselect" id="account_type_dropdown">
+                                <button
+                                    class="btn btn-account-toggle dropdown-toggle w-100 text-start d-flex justify-content-between align-items-center py-2"
+                                    type="button" data-bs-toggle="dropdown" data-bs-strategy="fixed"
+                                    data-bs-boundary="viewport" id="tipoConta">
+                                    <span class="text-truncate" data-dropdown-value>Selecione um tipo de conta</span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark w-100 border p-2 shadow">
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <div class="input-group rounded-0">
+                                            <input type="text"
+                                                class="form-control form-control-custom shadow-none rounded-0"
+                                                placeholder="Nova Conta" id="add_account">
+                                            <button class="btn btn-save rounded-0 d-flex align-items-center"
+                                                type="button" id="add_account_btn">
+                                                <i class="fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Ícone -->
+                        <div class="col-12 col-sm-icon" id="icon_dropdown">
+                            <label class="form-label fw-semibold mb-1">
+                                <small>Ícone</small>
+                            </label>
+                            <div class="dropdown w-100 noselect">
+                                <button
+                                    class="btn btn-account-toggle dropdown-toggle w-100 text-start d-flex justify-content-between align-items-center py-2"
+                                    type="button" data-bs-toggle="dropdown" id="icone" data-value="1">
+                                    <div class="text-truncate d-flex" style="font-size: 25px; color: var(--icon-color);"
+                                        data-dropdown-value>
+                                        <i class="fa-wallet"></i>
+                                    </div>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-dark p-2 border shadow">
+                                    <div class="d-flex flex-column">
+                                        <button class="icon-option dropdown-option dropdown-item" data-value="1"
+                                            title="Carteira">
+                                            <i class="fa-wallet"></i>
+                                        </button>
+                                        <button class="icon-option dropdown-option dropdown-item" data-value="2"
+                                            title="Casa">
+                                            <i class="fa-house"></i>
+                                        </button>
+                                        <button class="icon-option dropdown-option dropdown-item" data-value="3"
+                                            title="Mercado">
+                                            <i class="fa-baket-shopping"></i>
+                                        </button>
+                                        <button class="icon-option dropdown-option dropdown-item" data-value="4"
+                                            title="Viagem">
+                                            <i class="fa-plane"></i>
+                                        </button>
+                                        <button class="icon-option dropdown-option dropdown-item" data-value="5"
+                                            title="Saúde">
+                                            <i class="fa-health"></i>
+                                        </button>
+                                        <button class="icon-option dropdown-option dropdown-item" data-value="6"
+                                            title="Jogos">
+                                            <i class="fa-gamepad-modern"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nome -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold mb-1 mt-2">
+                            <small>Nome Conta</small>
+                        </label>
+                        <input type="text" class="form-control form-control-custom account-name"
+                            placeholder="Ex: Conta1" autocomplete="off">
+                    </div>
+
+                    <!-- Botão Salvar -->
+                    <div class="d-grid mt-4">
+                        <!-- Botão de Criação -->
+                        <button class="btn btn-save py-2 fw-semibold rounded-3" id="account_type_save">
+                            <i class="bi bi-check-circle me-2"></i> Salvar Conta
+                        </button>
+                        <!-- Botão de Edição (oculto por padrão) -->
+                        <button class="btn btn-save-green py-2 fw-semibold rounded-3 d-none"
+                            id="account_type_edit_save">
+                            Salvar Edição
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

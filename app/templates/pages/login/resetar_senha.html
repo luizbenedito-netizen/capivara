@@ -1,0 +1,125 @@
+{% extends 'layouts/pages/login.html' %}
+
+{% block title %}
+Recuperar Conta
+{% endblock %}
+
+{% block content %}
+{% if messages %}
+<div class="mt-4 text-center">
+    {% for message in messages %}
+    {% if "error" in message.tags %}
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-2">
+        {{ message }}
+    </div>
+    {% elif "success" in message.tags %}
+    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-2">
+        {{ message }}
+    </div>
+    {% endif %}
+    {% endfor %}
+    <button onclick="voltar()" type="button"
+        class="text-white bg-cyan-900 hover:bg-cyan-950 focus:ring-4 focus:outline-none font-medium rounded-lg text-base w-full px-6 py-3 text-center light:bg-blue-600 light:hover:bg-blue-700 light:focus:ring-blue-800 cursor-pointer">
+        Login
+    </button>
+    <script>
+        const voltar = () => {
+            window.location.href = "{% url 'login' %}";
+        }
+    </script>
+</div>
+{% else %}
+<form id="formSenha" class="flex flex-col gap-4 w-full" method="POST">
+    {% csrf_token %}
+    <div class="mb-6 w-full">
+        <label for="senha" class="block mb-2 text-base font-medium text-gray-900 light:text-white">Senha</label>
+        <input type="password" name="senha" id="senha"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-cyan-900 focus:border-cyan-900 block w-full p-3 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
+            required placeholder="Informe uma nova senha" />
+        <span id="mensagemSenha" class="text-red-600 text-sm mt-1"></span>
+    </div>
+    <div class="mb-6 w-full">
+        <label for="senha2" class="block mb-2 text-base font-medium text-gray-900 light:text-white">Confirmar
+            Senha</label>
+        <input type="password" name="senha2" id="senha2"
+            class="bg-gray-200 border border-gray-300 text-gray-900 text-base rounded-lg block w-full p-3 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
+            required placeholder="Digite novamente" readonly />
+        <span id="mensagemSenha2" class="text-red-600 text-sm mt-1"></span>
+    </div>
+    <button type="submit"
+        class="text-white bg-cyan-900 hover:bg-cyan-950 focus:ring-4 focus:outline-none font-medium rounded-lg text-base w-full px-6 py-3 text-center light:bg-blue-600 light:hover:bg-blue-700 light:focus:ring-blue-800 cursor-pointer">
+        Salvar
+    </button>
+</form>
+<script>
+    const senha = document.getElementById('senha');
+    const senha2 = document.getElementById('senha2');
+    const msgSenha = document.getElementById('mensagemSenha');
+    const msgSenha2 = document.getElementById('mensagemSenha2');
+    const form = document.getElementById('formSenha');
+
+    function senhaForte(s) {
+        const numeros = (s.match(/\d/g) || []).length;
+        const especiais = (s.match(/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/g) || []).length;
+        const erros = [];
+        if (s.length < 12) erros.push('mínimo 12 caracteres');
+        if (numeros < 3) erros.push('pelo menos 3 números');
+        if (especiais < 1) erros.push('pelo menos 1 caractere especial');
+        return { valido: erros.length === 0, mensagem: erros.join(', ') };
+    }
+
+    function marcarErro(input, msg, texto) {
+        if (texto) {
+            msg.textContent = texto;
+            input.classList.remove('border-gray-300', 'focus:ring-cyan-900', 'focus:border-cyan-900');
+            input.classList.add('border-red-400', 'focus:ring-red-400', 'focus:border-red-400');
+        } else {
+            msg.textContent = '';
+            input.classList.remove('border-red-400', 'focus:ring-red-400', 'focus:border-red-400');
+            input.classList.add('border-gray-300', 'focus:ring-cyan-900', 'focus:border-cyan-900');
+        }
+    }
+
+    function atualizarSenha2(senhaValida) {
+        if (!senhaValida) {
+            senha2.setAttribute('readonly', true);
+            senha2.classList.replace('bg-gray-50', 'bg-gray-200');
+            // remove as classes de focus
+            senha2.classList.remove('focus:ring-cyan-900', 'focus:border-cyan-900');
+            senha2.value = '';
+            msgSenha2.textContent = '';
+        } else {
+            senha2.removeAttribute('readonly');
+            senha2.classList.replace('bg-gray-200', 'bg-gray-50');
+            // adiciona novamente as classes de focus
+            senha2.classList.add('focus:ring-cyan-900', 'focus:border-cyan-900');
+        }
+    }
+
+    function validar() {
+        // Valida força da senha 1
+        const resultado = senhaForte(senha.value);
+        marcarErro(senha, msgSenha, resultado.valido ? '' : `Senha fraca: ${resultado.mensagem}.`);
+        atualizarSenha2(resultado.valido);
+
+        // Validação de correspondência: só se o usuário começou a digitar no segundo campo
+        if (senha2.value) {
+            marcarErro(senha2, msgSenha2, senha.value !== senha2.value ? 'As senhas não correspondem.' : '');
+        } else {
+            msgSenha2.textContent = '';
+            senha2.classList.remove('border-red-400', 'focus:ring-red-400', 'focus:border-red-400');
+            senha2.classList.add('border-gray-300', 'focus:ring-cyan-900', 'focus:border-cyan-900');
+        }
+
+        // Retorna true apenas se senha 1 forte e senhas iguais (quando senha2 tem valor)
+        return resultado.valido && (senha2.value ? senha.value === senha2.value : true);
+    }
+
+    // Eventos
+    senha.addEventListener('input', validar);
+    senha2.addEventListener('input', validar);
+    form.addEventListener('submit', e => { if (!validar()) e.preventDefault(); });
+</script>
+
+{% endif %}
+{% endblock %}

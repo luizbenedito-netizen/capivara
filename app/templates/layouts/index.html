@@ -1,0 +1,25 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br" data-theme="{{ theme }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <title>{% block title %}Página{% endblock %}</title>
+    <!-- app-theme -->
+    <link href="{% static 'css/libs/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/theme.css' %}" rel="stylesheet">
+    <link href="{% static 'css/libs/icons.css' %}" rel="stylesheet">
+    {% block js-0 %}{% endblock js-0 %}
+</head>
+
+<body>
+    {% block body %} {% endblock %}
+    <!-- Script -->
+    <script src="{% static 'js/libs/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/libs/sweetalert2@11.js' %}"></script>
+    <script src="{% static 'js/pages/index.js' %}"></script>
+</body>
+
+</html>

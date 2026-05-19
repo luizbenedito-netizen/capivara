@@ -1,0 +1,46 @@
+$icons: (
+    "move",
+    "calculator-simple",
+    "angle-right",
+    "bars",
+    "link",
+    "house",
+    "bell",
+    "arrow-up-to-line",
+    "grid-plus",
+    "user",
+    "moon",
+    "trash",
+    "caret-left",
+    "plus",
+    "claps",
+    "angle-left",
+    "circle-question",
+    "eye-low",
+    "plane",
+    "baket-shopping",
+    "report",
+    "arrow-top",
+    "wallet",
+    "envelope",
+    "logo",
+    "gear",
+    "gamepad-modern",
+    "eye",
+    "minus",
+    "categories",
+    "arrow-down",
+    "health",
+    "home",
+    "label",
+    "caret-right",
+    "chart-pie",
+    "filter"
+);
+
+// ./frontend | npm run build:icons
+@each $icon in $icons {
+    .fa-#{$icon} {
+        --icon-url: url("/static/icons/#{$icon}.svg");
+    }
+}

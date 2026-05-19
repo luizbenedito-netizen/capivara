@@ -1,0 +1,79 @@
+{% extends "../../layouts/index.html" %}
+{% load static %}
+
+{% block js-0 %}
+{% load django_vite %}
+{% vite_asset 'layout/pages/user/user.js' %}
+{% endblock js-0 %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block body %}
+<nav class="profile-nav d-flex align-items-center justify-content-center position-relative">
+    <div class="nav-icons position-absolute end-0 me-4 noselect">
+        <div class="nav-icon-area" title="Notificações">
+            <i class="fa-bell"></i>
+        </div>
+        <div class="nav-icon-area" title="Configurações">
+            <i class="fa-gear" onclick="window.location.href='settings'"></i>
+        </div>
+    </div>
+    <div class="text-center">
+        <div class="avatar-wrapper">
+            <div class="avatar">
+                <i class="fa-user"></i>
+            </div>
+        </div>
+        <div class="user-name mt-2">{{ request.session.username }}</div>
+        <button class="edit-btn mt-2 noselect">Editar Perfil</button>
+    </div>
+</nav>
+<div class="layout noselect">
+    <div class="content-area" id="content">
+        <div class="config-card">
+            <div class="config-title">Configure</div>
+            <div class="config-list">
+                <div class="config-item">
+                    <i class="fa-user"></i>
+                    <span>Perfil</span>
+                </div>
+                <div class="config-item">
+                    <i class="fa-label"></i>
+                    <span>Tags</span>
+                </div>
+                <div class="config-item">
+                    <i class="fa-grid-plus"></i>
+                    <span>Categorias</span>
+                </div>
+                <div class="config-item">
+                    <i class="fa fa-arrow-up-to-line"></i>
+                    <span>Importar Transações</span>
+                </div>
+            </div>
+        </div>
+        <div class="invite-box">
+            <i class="fa-claps"></i>
+            <span>Indique o Capivara a um amigo</span>
+        </div>
+        <div class="help-card">
+            <i class="fa-circle-question help-icon"></i>
+            <div class="help-title">Como podemos te ajudar?</div>
+
+            <div class="help-text">
+                Se você está com alguma dúvida ou teve algum problema, é só entrar em contato com nosso time que a
+                gente te ajuda!
+            </div>
+            <div class="help-action">
+                <i class="fa-envelope"></i>
+                <span>Converse com a gente</span>
+            </div>
+
+        </div>
+    </div>
+    <!-- Scroll custom -->
+    <div class="custom-scroll" id="scrollbar">
+        <div class="scroll-thumb" id="thumb"></div>
+    </div>
+</div>
+{% include 'layouts/components/nav-footer.html' %}
+{% endblock %}
